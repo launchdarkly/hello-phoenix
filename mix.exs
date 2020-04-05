@@ -42,7 +42,9 @@ defmodule HelloPhoenix.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:ldclient, "~> 1.0.0-beta2", hex: :launchdarkly_server_sdk},
+      {:cowlib, "~> 2.8.0", override: true}
     ]
   end
 

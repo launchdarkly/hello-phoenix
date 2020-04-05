@@ -6,6 +6,8 @@ defmodule HelloPhoenix.Application do
   use Application
 
   def start(_type, _args) do
+    # Start LaunchDarkly SDK client
+    :ldclient.start_instance(String.to_charlist(Application.get_env(:hello_phoenix, :ld_sdk_key)))
     # List all child processes to be supervised
     children = [
       # Start the Ecto repository
