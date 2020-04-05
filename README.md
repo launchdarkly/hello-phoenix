@@ -9,7 +9,9 @@ We've built a simple web application that demonstrates how LaunchDarkly's SDK wo
 * LaunchDarkly account and server SDK key
 * LaunchDarkly boolean feature flag called "alternate.page"
 
-To start your Phoenix server:
+## Run
+
+Clone this repo and in its directory start your Phoenix server:
 
 ```
 LD_SDK_KEY="YOUR_SDK_KEY" mix phx.server
