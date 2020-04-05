@@ -17,6 +17,7 @@ defmodule HelloPhoenixWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/hello-launchdarkly/:user", HelloLaunchdarklyController, :hellouser
   end
 
   # Other scopes may use custom stacks.
