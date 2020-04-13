@@ -10,8 +10,6 @@ defmodule HelloPhoenix.Application do
     :ldclient.start_instance(String.to_charlist(Application.get_env(:hello_phoenix, :ld_sdk_key)))
     # List all child processes to be supervised
     children = [
-      # Start the Ecto repository
-      HelloPhoenix.Repo,
       # Start the endpoint when the application starts
       HelloPhoenixWeb.Endpoint
       # Starts a worker by calling: HelloPhoenix.Worker.start_link(arg)

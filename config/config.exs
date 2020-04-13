@@ -7,8 +7,8 @@
 # General application configuration
 use Mix.Config
 
-config :hello_phoenix,
-  ecto_repos: [HelloPhoenix.Repo]
+#config :hello_phoenix,
+#  ecto_repos: [HelloPhoenix.Repo]
 
 # Configures the endpoint
 config :hello_phoenix, HelloPhoenixWeb.Endpoint,
