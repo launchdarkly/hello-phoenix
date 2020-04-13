@@ -5,13 +5,27 @@ We've built a simple web application that demonstrates how LaunchDarkly's SDK wo
 ## Prerequisites
 
 * [Elixir](https://elixir-lang.org/install.html)
-* [Phoenix](https://hexdocs.pm/phoenix/installation.html)
+* [npm](https://nodejs.org/en/download/)
 * LaunchDarkly account and server SDK key
 * LaunchDarkly boolean feature flag called "alternate.page"
 
 ## Run
 
-Clone this repo and in its directory start your Phoenix server:
+Clone this repo
+
+```
+git clone https://github.com/launchdarkly/hello-phoenix.git
+```
+
+Install dependencies
+```
+cd hello-phoenix/assets
+npm install
+cd ..
+mix deps.get
+```
+
+Start your Phoenix server
 
 ```
 LD_SDK_KEY="YOUR_SDK_KEY" mix phx.server
