@@ -39,7 +39,7 @@ defmodule HelloPhoenix.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:ldclient, "~> 1.0.0-beta3", hex: :launchdarkly_server_sdk},
+      {:ldclient, "~> 1.0.0", hex: :launchdarkly_server_sdk},
       {:cowlib, "~> 2.8.0", override: true}
     ]
   end
