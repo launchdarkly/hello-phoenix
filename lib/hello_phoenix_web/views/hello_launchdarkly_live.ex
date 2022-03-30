@@ -1,6 +1,5 @@
 defmodule HelloPhoenixWeb.HelloLaunchdarklyLive do
   use HelloPhoenixWeb, :live_view
-#  use Phoenix.LiveView
 
   def render(assigns) do
     case assigns.alternate do
