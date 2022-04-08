@@ -1,4 +1,0 @@
-<div class="phx-hero">
-  <h2>Hello <%= @user %>,</h2>
-  <p>Welcome to the NEW cool page, enabled by LaunchDarkly!</p>
-</div>

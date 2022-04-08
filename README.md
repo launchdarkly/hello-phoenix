@@ -19,9 +19,6 @@ git clone https://github.com/launchdarkly/hello-phoenix.git
 
 Install dependencies
 ```
-cd hello-phoenix/assets
-npm install
-cd ..
 mix deps.get
 ```
 

@@ -5,15 +5,20 @@ defmodule HelloPhoenix.Application do
 
   use Application
 
+  @impl true
   def start(_type, _args) do
     # Start LaunchDarkly SDK client
-    :ldclient.start_instance(String.to_charlist(Application.get_env(:hello_phoenix, :ld_sdk_key)))
-    # List all child processes to be supervised
+    :ldclient.start_instance(String.to_charlist(Application.get_env(:hello_phoenix, :ld_sdk_key, "")))
+
     children = [
-      # Start the endpoint when the application starts
+      # Start the Telemetry supervisor
+      HelloPhoenixWeb.Telemetry,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: HelloPhoenix.PubSub},
+      # Start the Endpoint (http/https)
       HelloPhoenixWeb.Endpoint
-      # Starts a worker by calling: HelloPhoenix.Worker.start_link(arg)
-      # {HelloPhoenix.Worker, arg},
+      # Start a worker by calling: HelloPhoenix.Worker.start_link(arg)
+      # {HelloPhoenix.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -24,6 +29,7 @@ defmodule HelloPhoenix.Application do
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
+  @impl true
   def config_change(changed, _new, removed) do
     HelloPhoenixWeb.Endpoint.config_change(changed, removed)
     :ok
