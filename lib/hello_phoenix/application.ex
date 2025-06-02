@@ -8,7 +8,15 @@ defmodule HelloPhoenix.Application do
   @impl true
   def start(_type, _args) do
     # Start LaunchDarkly SDK client
-    :ldclient.start_instance(String.to_charlist(Application.get_env(:hello_phoenix, :ld_sdk_key, "")))
+    :ldclient.start_instance(
+      String.to_charlist(Application.get_env(:hello_phoenix, :ld_sdk_key, "")),
+      :default,
+      %{
+        :http_options => %{
+          :tls_options => :ldclient_config.tls_basic_options()
+        }
+      }
+    )
 
     children = [
       # Start the Telemetry supervisor
