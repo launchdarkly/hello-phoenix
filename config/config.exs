@@ -10,7 +10,7 @@ import Config
 # Configures the endpoint
 config :hello_phoenix, HelloPhoenixWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: HelloPhoenixWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [formats: [html: HelloPhoenixWeb.ErrorHTML], layout: false],
   pubsub_server: HelloPhoenix.PubSub,
   live_view: [signing_salt: "SrUm9pIO"]
 
