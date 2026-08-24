@@ -5,18 +5,11 @@ defmodule HelloPhoenix.Application do
 
   use Application
 
+  require Logger
+
   @impl true
   def start(_type, _args) do
-    # Start LaunchDarkly SDK client
-    :ldclient.start_instance(
-      String.to_charlist(Application.get_env(:hello_phoenix, :ld_sdk_key, "")),
-      :default,
-      %{
-        :http_options => %{
-          :tls_options => :ldclient_config.tls_basic_options()
-        }
-      }
-    )
+    start_ldclient(Application.get_env(:hello_phoenix, :ld_sdk_key))
 
     children = [
       # Start the Telemetry supervisor
@@ -33,6 +26,23 @@ defmodule HelloPhoenix.Application do
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: HelloPhoenix.Supervisor]
     Supervisor.start_link(children, opts)
+  end
+
+  defp start_ldclient(sdk_key) when is_binary(sdk_key) and sdk_key != "" do
+    :ldclient.start_instance(String.to_charlist(sdk_key), :default, %{
+      :http_options => %{
+        :tls_options => :ldclient_config.tls_basic_options()
+      }
+    })
+  end
+
+  defp start_ldclient(_sdk_key) do
+    Logger.warning(
+      "LD_SDK_KEY is not set, so the LaunchDarkly client is running offline; " <>
+        "flag evaluations fall back to their default values."
+    )
+
+    :ldclient.start_instance(~c"", :default, %{:offline => true})
   end
 
   # Tell Phoenix to update the endpoint configuration
